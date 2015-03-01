@@ -16,4 +16,8 @@ class Web::MembersController < Web::ApplicationController
       render action: :new
     end
   end
+
+  def show
+    @member = Member.find_by_ticket_number params[:ticket]
+  end
 end
