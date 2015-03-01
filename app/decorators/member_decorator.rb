@@ -9,6 +9,10 @@ class MemberDecorator < Draper::Decorator
     user.last_name
   end
 
+  def name
+    full_name
+  end
+
   def full_name
     "#{first_name} #{patronymic} #{last_name}"
   end

@@ -5,6 +5,8 @@ class Member < ActiveRecord::Base
   belongs_to :user
   accepts_nested_attributes_for :user, allow_destroy: true
 
+  scope :removed, -> { where state: :removed }
+
   validates :patronymic, presence: true,
                          human_name: true
   validates :motto, presence: true
