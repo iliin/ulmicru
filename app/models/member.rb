@@ -1,4 +1,6 @@
 class Member < ActiveRecord::Base
+  after_save :update_user_name
+
   belongs_to :parent, class_name: 'Member'
   belongs_to :user
   accepts_nested_attributes_for :user, allow_destroy: true
@@ -40,13 +42,11 @@ class Member < ActiveRecord::Base
   include Municipalities
   enumerize :municipality, in: Municipalities.list, default: Municipalities.list.first
 
+  mount_uploader :avatar, AvatarUploader
+
   attr_accessor :first_name, :last_name
 
-  def first_name=(first_name)
-    User.update(user_id, first_name: first_name)
-  end
-
-  def last_name=(first_name)
-    User.update(user_id, last_name: last_name)
+  def update_user_name
+    User.update(user_id, first_name: first_name, last_name: last_name) if user_id
   end
 end

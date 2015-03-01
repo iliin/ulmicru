@@ -17,7 +17,7 @@
     - @members.each do |member|
       %tr.link{ data: { href: edit_admin_member_path(member) } }
         %td= member.id
-        %td= member.avatar
+        %td= image_tag member.avatar.extra_small
         %td= member.full_name
         %td= member.ticket_number
         %td= member.place
