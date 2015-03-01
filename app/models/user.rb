@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_secure_password validations: false
 
   has_many :authentications
+  has_one :member
 
   validates :email, uniqueness: true
   validates :first_name, human_name: true,
@@ -32,7 +33,7 @@ class User < ActiveRecord::Base
       transition all => :removed
     end
     event :restore do
-      transition :removed => :not_confirmed
+      transition removed: :not_confirmed
     end
   end
 end

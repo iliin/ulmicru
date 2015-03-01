@@ -6,13 +6,14 @@ ru:
     attributes:
       user:
         first_name: Имя
-        patronymic: Отчество
         last_name: Фамилия
         role: Роль на сайте
         email: E-mail
         password: Пароль
         password_confirmation: Подтверждение пароля
       member:
+        first_name: Имя
+        last_name: Фамилия
         avatar: Аватар
         full_name: Ф.И.О.
         ticket_number: Номер членского билета

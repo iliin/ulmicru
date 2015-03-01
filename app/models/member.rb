@@ -1,6 +1,7 @@
 class Member < ActiveRecord::Base
-  belongs_to :user
   belongs_to :parent, class_name: 'Member'
+  belongs_to :user
+  accepts_nested_attributes_for :user, allow_destroy: true
 
   validates :patronymic, presence: true,
                          human_name: true
@@ -33,5 +34,19 @@ class Member < ActiveRecord::Base
     event :restore do
       transition removed: :not_confirmed
     end
+  end
+
+  extend Enumerize
+  include Municipalities
+  enumerize :municipality, in: Municipalities.list, default: Municipalities.list.first
+
+  attr_accessor :first_name, :last_name
+
+  def first_name=(first_name)
+    User.update(user_id, first_name: first_name)
+  end
+
+  def last_name=(first_name)
+    User.update(user_id, last_name: last_name)
   end
 end
