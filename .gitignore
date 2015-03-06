@@ -15,7 +15,10 @@
 /log/*
 !/log/.keep
 /tmp
+*.sw*
+*.sqlite3
 config/secrets.yml
 config/database.yml
 config/oauth.yml
 ulmic_test
+

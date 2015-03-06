@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150301213120) do
+ActiveRecord::Schema.define(version: 20150306112330) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  create_table "activity_lines", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "found_date"
+    t.string   "type"
+    t.string   "description"
+    t.integer  "head_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "authentications", force: :cascade do |t|
     t.text     "provider"
@@ -22,6 +29,35 @@ ActiveRecord::Schema.define(version: 20150301213120) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "banners", force: :cascade do |t|
+    t.string   "photo"
+    t.string   "link"
+    t.datetime "begin_date"
+    t.datetime "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "event_registrations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.string   "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.string   "main_photo"
+    t.integer  "user_id"
+    t.datetime "begin_date"
+    t.datetime "end_date"
+    t.string   "type"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "members", force: :cascade do |t|
