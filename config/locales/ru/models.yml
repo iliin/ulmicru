@@ -3,6 +3,9 @@ ru:
     models:
       user: Пользователь
       member: Член организации
+      banner: Баннер
+      activity_line: Направление деятельности
+      event: Мероприятие
     attributes:
       user:
         first_name: Имя

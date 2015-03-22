@@ -13,7 +13,6 @@ class Web::Admin::MembersControllerTest < ActionController::TestCase
   test 'should create member' do
     attributes = attributes_for :member
     post :create, member: attributes
-    assert_response :redirect, @response.body
     assert_redirected_to admin_members_path
     assert_equal attributes[:patronymic], Member.last.patronymic
   end
@@ -26,14 +25,12 @@ class Web::Admin::MembersControllerTest < ActionController::TestCase
   test 'should patch update' do
     attributes = attributes_for :member
     patch :update, member: attributes, id: @member
-    assert_response :redirect, @response.body
     assert_redirected_to admin_members_path
     @member.reload
     assert_equal attributes[:patronymic], @member.patronymic
   end
 
   test 'should delete destroy' do
-    count = Member.count
     delete :destroy, id: @member
     @member.reload
     assert @member.removed?

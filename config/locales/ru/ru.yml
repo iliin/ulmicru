@@ -1,11 +1,20 @@
 ru:
   application:
     name: Сайт МИЦ
+  date:
+    order:
+      - :day
+      - :month
+      - :year
   helpers:
     enter: Войти
     actions:
       update: Редактировать
       create: Создать
+      destroy: Удалить
+      show: Показать
+      index: Все
+      edit: Редактировать
     links:
       actions: Действия
       edit: Изменить

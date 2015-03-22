@@ -11,16 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150306112330) do
+ActiveRecord::Schema.define(version: 20150321230139) do
 
   create_table "activity_lines", force: :cascade do |t|
     t.string   "title"
     t.datetime "found_date"
-    t.string   "type"
+    t.string   "activity_type"
     t.string   "description"
-    t.integer  "head_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "creator_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "state"
   end
 
   create_table "authentications", force: :cascade do |t|
@@ -38,6 +39,7 @@ ActiveRecord::Schema.define(version: 20150306112330) do
     t.datetime "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "state"
   end
 
   create_table "event_registrations", force: :cascade do |t|
@@ -52,10 +54,10 @@ ActiveRecord::Schema.define(version: 20150306112330) do
     t.string   "title"
     t.string   "description"
     t.string   "main_photo"
-    t.integer  "user_id"
+    t.integer  "creator_id"
     t.datetime "begin_date"
     t.datetime "end_date"
-    t.string   "type"
+    t.string   "event_type"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -75,6 +77,14 @@ ActiveRecord::Schema.define(version: 20150306112330) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.text     "state"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|

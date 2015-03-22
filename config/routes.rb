@@ -1,5 +1,17 @@
 # -*- coding: utf-8 -*-
 Rails.application.routes.draw do
+  namespace :web do
+  namespace :event do
+    get 'registration/create'
+    end
+  end
+
+  namespace :web do
+  namespace :event do
+    get 'registration/delete'
+    end
+  end
+
   root to: 'web/welcome#index'
 
   get '/auth/:provider/callback' => 'web/omniauth#callback'
@@ -7,6 +19,8 @@ Rails.application.routes.draw do
   scope module: :web do
     resource :session, only: [:new, :create, :destroy]
     resources :users, only: [ :new, :create ]
+    resources :events, only: [ :show, :new, :create, :index ]
+    resources :activity_lines, only: [:show]
     resources :members, only: [ :new, :create ] do
       collection do
         get '/:ticket' => 'members#show'
@@ -17,6 +31,8 @@ Rails.application.routes.draw do
       resources :users
       resources :members
       resources :unviewed, only: :index
+      resources :activity_lines, except: [:show]
+      resources :banners, except: [:show]
       resources :trash, only: [] do
         collection do
           get 'index/:type' => 'trash#index', as: :type
