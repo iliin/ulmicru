@@ -16,6 +16,7 @@ ru:
       feedback: Обратная связь
       comment: Комментарий
       letter: Письмо
+      video: Видео
     attributes:
       user:
         first_name: Имя
