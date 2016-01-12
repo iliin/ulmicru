@@ -29,8 +29,7 @@ class Web::RemindPasswordController < Web::ApplicationController
 
   def update
     @user_form = UserForm.find_with_model_by! id: params[:id]
-    @user_form.submit params[:user]
-    if @user_form.save
+    if @user_form.save params[:user]
       redirect_to new_session_path
     else
       render :edit

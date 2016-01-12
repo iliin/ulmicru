@@ -10,9 +10,8 @@ class Web::Users::JoinController < Web::Users::ApplicationController
   def create
     questionary = current_user.becomes! Questionary
     @questionary_form = QuestionaryForm.new questionary
-    @questionary_form.submit params[:questionary]
     User.find(questionary.id).update type: 'Questionary'
-    if @questionary_form.save
+    if @questionary_form.submit params[:questionary]
       redirect_to account_path
     else
       # FIXME fix this shiiiiit!!!!

@@ -1,7 +1,11 @@
 class ActivityLines::Corporative::ConfessionForm < ApplicationForm
-  attributes :year, :member_id, :state, :nomination
+  property :year, :member_id, :state, :nomination
 
-  association :arguments do
-    attributes :id, :argument_type, :text, :member_id, :confession_id
+  collection :arguments do
+    property :id
+    property :argument_type
+    property :text
+    property :member_id
+    property :confession_id
   end
 end

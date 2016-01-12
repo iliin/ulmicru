@@ -13,8 +13,7 @@ class Web::Admin::DocumentsController < Web::Admin::ApplicationController
 
   def create
     @document_form = DocumentForm.new_with_model
-    @document_form.submit(params[:document])
-    if @document_form.save
+    if @document_form.submit params[:document]
       redirect_to admin_documents_path
     else
       render action: :new
@@ -23,8 +22,7 @@ class Web::Admin::DocumentsController < Web::Admin::ApplicationController
 
   def update
     @document_form = DocumentForm.find_with_model params[:id]
-    @document_form.submit(params[:document])
-    if @document_form.save
+    if @document_form.submit params[:document]
       redirect_to edit_admin_document_path @document_form.model
     else
       render action: :edit

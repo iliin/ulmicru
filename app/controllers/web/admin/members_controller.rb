@@ -36,8 +36,7 @@ class Web::Admin::MembersController < Web::Admin::ApplicationController
     else
       @member_form = MemberForm.new_with_model
     end
-    @member_form.submit params[:member]
-    if @member_form.save
+    if @member_form.submit params[:member]
       redirect_to admin_members_path
     else
       choose_members
@@ -48,8 +47,7 @@ class Web::Admin::MembersController < Web::Admin::ApplicationController
   def update
     member = Member.find params[:id]
     @member_form = member_form(member).new member
-    @member_form.submit params[:member]
-    if @member_form.save
+    if @member_form.submit params[:member]
       redirect_to edit_admin_member_path @member_form.model
     else
       choose_members

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-class ApplicationForm < ActiveForm::Base
+class ApplicationForm < Reform::Form
   extend FormDelegator
 
   def self.inherited(base)
@@ -9,36 +9,39 @@ class ApplicationForm < ActiveForm::Base
 
   class << self
     def find_with_model *args
-      obj = obj_class.find(*args)
+      obj = obj_class.find *args
       self.new obj
     end
 
     def find_with_model_by *args
-      obj = obj_class.find_by(*args)
+      obj = obj_class.find_by *args
       self.new obj
     end
 
     def find_with_model_by! *args
-      obj = obj_class.find_by!(*args)
+      obj = obj_class.find_by! *args
       self.new obj
     end
 
     def new_with_model *args
       obj = obj_class.new *args
       active_form = self.new obj
-      #active_form.forms.each { |collection| collection.each { |f| f.delete } }
       active_form
     end
 
     def obj_class
-      main_model_name = self.main_model.to_s
-      main_model_name = main_model_name.camelize if main_model_name.include? '_'
-      if main_model_name.include? '/'
-        names = main_model_name.split '/'
-        main_model_name = names.collect { |name| name.capitalize! }.join('::')
-      end
-      main_model_name.capitalize! unless main_model_name[0].match /[A-Z]/
-      Object.const_get main_model_name
+      self.model_name.name.constantize
     end
+
+    def property(*args, **options)
+      args.each do |attribute|
+        super attribute, options
+      end
+    end
+  end
+
+  def submit(params)
+    self.validate params
+    self.save
   end
 end

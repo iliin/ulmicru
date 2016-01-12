@@ -17,8 +17,7 @@ class Web::Admin::FeedbacksController < Web::Admin::ApplicationController
 
   def create
     @feedback_form = FeedbackForm.new_with_model
-    @feedback_form.submit(params[:feedback])
-    if @feedback_form.save
+    if @feedback_form.submit params[:feedback]
       redirect_to admin_feedbacks_path
     else
       render action: :new
@@ -27,8 +26,7 @@ class Web::Admin::FeedbacksController < Web::Admin::ApplicationController
 
   def update
     @feedback_form = FeedbackForm.find_with_model params[:id]
-    @feedback_form.submit(params[:feedback])
-    if @feedback_form.save
+    if @feedback_form.submit params[:feedback]
       redirect_to edit_admin_feedback_path @feedback_form.model
     else
       render action: :edit

@@ -23,8 +23,7 @@ class Web::Admin::EventsController < Web::Admin::ApplicationController
 
   def create
     @event_form = EventForm.new_with_model
-    @event_form.submit params[:event]
-    if @event_form.save
+    if @event_form.submit params[:event]
       redirect_to admin_events_path
     else
       choose_teams
@@ -36,8 +35,7 @@ class Web::Admin::EventsController < Web::Admin::ApplicationController
 
   def update
     @event_form = EventForm.find_with_model params[:id]
-    @event_form.submit(params[:event])
-    if @event_form.save
+    if @event_form.submit params[:event]
       redirect_to edit_admin_event_path @event_form.model
     else
       choose_teams

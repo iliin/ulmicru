@@ -5,11 +5,10 @@ class Web::UsersController < Web::ApplicationController
 
   def create
     @user_form = UserForm.new_with_model
-    @user_form.submit params[:user]
     if check_exists_unavailable_member
       redirect_to account_path
     else
-      if @user_form.save
+      if @user_form.submit params[:user]
         #TODO replace to observers
         send_notification @user_form.model, @user_form.model, :after_create
 

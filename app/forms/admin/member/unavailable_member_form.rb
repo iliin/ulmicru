@@ -1,9 +1,10 @@
 class Admin::Member::UnavailableMemberForm < ActiveForm::Base
-  self.main_model = :member
+  property :first_name, :last_name, :patronymic, :email, :motto, :ticket, :mobile_phone, :birth_date, :home_adress, :municipality, :locality, :avatar, :state, :state_event, :type, :parent_id, :school, :role
 
-  attributes :first_name, :last_name, :patronymic, :email, :motto, :ticket, :mobile_phone, :birth_date, :home_adress, :municipality, :locality, :avatar, :state, :state_event, :type, :parent_id, :school, :role
-
-  association :positions do
-    attributes :title, :begin_date, :end_date, :member_id
+  collection :positions do
+    property :title
+    property :begin_date
+    property :end_date
+    property :member_id
   end
 end

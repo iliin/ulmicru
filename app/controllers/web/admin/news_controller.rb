@@ -14,8 +14,7 @@ class Web::Admin::NewsController < Web::Admin::ApplicationController
     # FIXME because sessions work wrong
     params[:news][:user_id] = current_user.id if current_user.present?
 
-    @news_form.submit params[:news]
-    if @news_form.save
+    if @news_form.submit params[:news]
       redirect_to admin_news_index_path
     else
       render action: :new
@@ -35,8 +34,7 @@ class Web::Admin::NewsController < Web::Admin::ApplicationController
 
   def update
     @news_form = NewsForm.find_with_model params[:id]
-    @news_form.submit params[:news]
-    if @news_form.save
+    if @news_form.submit params[:news]
       redirect_to edit_admin_news_path @news_form.model
     else
       render action: :edit

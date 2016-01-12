@@ -1,6 +1,8 @@
 class UserForm < ApplicationForm
-  self.main_model = :user
+  property :role, :email, :first_name, :last_name, :patronymic, :password
 
-  attributes :role, :email, :first_name, :last_name, required: true
-  attributes :patronymic, :password
+  validates :role, presence: true
+  validates :email, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
 end

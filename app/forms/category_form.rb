@@ -1,6 +1,5 @@
 class CategoryForm < ApplicationForm
-  self.main_model = :category
+  property :is_last, :parent_id, :name
 
-  attributes :name, required: true
-  attributes :is_last, :parent_id
+  validates :name, presence: true
 end

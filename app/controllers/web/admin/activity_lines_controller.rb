@@ -19,8 +19,7 @@ class Web::Admin::ActivityLinesController < Web::Admin::ApplicationController
 
   def create
     @activity_line_form = ActivityLineForm.new_with_model
-    @activity_line_form.submit(params[:activity_line])
-    if @activity_line_form.save
+    if @activity_line_form.submit params[:activity_line]
       redirect_to admin_activity_lines_path
     else
       choose_members
@@ -30,8 +29,7 @@ class Web::Admin::ActivityLinesController < Web::Admin::ApplicationController
 
   def update
     @activity_line_form = ActivityLineForm.find_with_model params[:id]
-    @activity_line_form.submit(params[:activity_line])
-    if @activity_line_form.save
+    if @activity_line_form.submit params[:activity_line]
       redirect_to edit_admin_activity_line_path @activity_line_form.model
     else
       choose_members

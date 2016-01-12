@@ -17,8 +17,7 @@ class Web::Admin::ArticlesController < Web::Admin::ApplicationController
     @article_form = ArticleForm.new_with_model
 
     params[:article][:user_id] = current_user.id if current_user.present?
-    @article_form.submit params[:article]
-    if @article_form.save
+    if @article_form.submit params[:article]
       redirect_to admin_articles_path
     else
       @categories = Category.presented.decorate
@@ -33,8 +32,7 @@ class Web::Admin::ArticlesController < Web::Admin::ApplicationController
 
   def update
     @article_form = ArticleForm.find_with_model params[:id]
-    @article_form.submit params[:article]
-    if @article_form.save
+    if @article_form.submit params[:article]
       redirect_to edit_admin_article_path @article_form.model
     else
       render action: :edit

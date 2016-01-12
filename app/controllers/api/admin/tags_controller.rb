@@ -12,8 +12,7 @@ class Api::Admin::TagsController < Api::Admin::ApplicationController
 
   def create
     @tag_form = TagForm.new_with_model
-    @tag_form.submit params[:tag]
-    if @tag_form.save
+    if @tag_form.save params[:tag]
       if @tag_form.tag_type.link?
         render json: { target: @tag_form.model.target,
                        tag_id: @tag_form.model.id,

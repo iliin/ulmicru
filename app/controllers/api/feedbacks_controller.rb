@@ -1,8 +1,7 @@
 class Api::FeedbacksController < Api::ApplicationController
   def create
     @feedback = FeedbackForm.new_with_model
-    @feedback.submit params[:feedback]
-    if @feedback.save
+    if @feedback.save params[:feedback]
       head :ok
     else
       head :bad_request

@@ -19,8 +19,7 @@ class Web::Admin::LettersController < Web::Admin::ApplicationController
 
   def create
     @letter_form = LetterForm.new_with_model
-    @letter_form.submit(params[:letter])
-    if @letter_form.save
+    if @letter_form.submit params[:letter]
       redirect_to admin_letters_path
     else
       choose_members
@@ -31,8 +30,7 @@ class Web::Admin::LettersController < Web::Admin::ApplicationController
 
   def update
     @letter_form = LetterForm.find_with_model params[:id]
-    @letter_form.submit params[:letter]
-    if @letter_form.save
+    if @letter_form.submit params[:letter]
       redirect_to edit_admin_letter_path @letter_form.model
     else
       choose_members

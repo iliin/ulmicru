@@ -10,8 +10,7 @@ class Web::Admin::CategoriesController < Web::Admin::ApplicationController
 
   def create
     @category_form = CategoryForm.new_with_model
-    @category_form.submit params[:category]
-    if @category_form.save
+    if @category_form.submit params[:category]
       redirect_to admin_categories_path
     else
       render action: :new
@@ -24,8 +23,7 @@ class Web::Admin::CategoriesController < Web::Admin::ApplicationController
 
   def update
     @category_form = CategoryForm.find_with_model params[:id]
-    @category_form.submit params[:category]
-    if @category_form.save
+    if @category_form.submit params[:category]
       redirect_to edit_admin_category_path @category_form.model
     else
       render action: :edit

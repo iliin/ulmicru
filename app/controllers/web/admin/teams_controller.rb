@@ -17,8 +17,7 @@ class Web::Admin::TeamsController < Web::Admin::ApplicationController
 
   def create
     @team_form = TeamForm.new_with_model
-    @team_form.submit params[:team]
-    if @team_form.save
+    if @team_form.submit params[:team]
       redirect_to admin_teams_path
     else
       choose_members
@@ -42,8 +41,7 @@ class Web::Admin::TeamsController < Web::Admin::ApplicationController
       end
     end
     @team_form = TeamForm.find_with_model params[:id]
-    @team_form.submit params[:team]
-    if @team_form.save
+    if @team_form.submit params[:team]
       redirect_to edit_admin_team_path @team_form.model
     else
       choose_members

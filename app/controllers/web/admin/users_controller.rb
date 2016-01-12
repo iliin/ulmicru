@@ -17,8 +17,7 @@ class Web::Admin::UsersController < Web::Admin::ApplicationController
 
   def create
     @user_form = UserForm.new_with_model
-    @user_form.submit(params[:user])
-    if @user_form.save
+    if @user_form.submit params[:user]
       redirect_to admin_users_path
     else
       render action: :new
@@ -27,8 +26,7 @@ class Web::Admin::UsersController < Web::Admin::ApplicationController
 
   def update
     @user_form = UserForm.find_with_model params[:id]
-    @user_form.submit(params[:user])
-    if @user_form.save
+    if @user_form.submit params[:user]
       redirect_to edit_admin_user_path @user_form.model
     else
       render action: :edit

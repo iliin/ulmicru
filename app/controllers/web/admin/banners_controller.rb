@@ -18,8 +18,7 @@ class Web::Admin::BannersController < Web::Admin::ApplicationController
 
   def create
     @banner_form = BannerForm.new_with_model
-    @banner_form.submit(params[:banner])
-    if @banner_form.save
+    if @banner_form.submit params[:banner]
       redirect_to admin_banners_path
     else
       render action: :new
@@ -28,8 +27,7 @@ class Web::Admin::BannersController < Web::Admin::ApplicationController
 
   def update
     @banner_form = BannerForm.find_with_model params[:id]
-    @banner_form.submit(params[:banner])
-    if @banner_form.save
+    if @banner_form.submit params[:banner]
       redirect_to edit_admin_banner_path @banner_form.model
     else
       render action: :edit

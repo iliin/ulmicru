@@ -33,9 +33,8 @@ class Web::MembersController < Web::ApplicationController
       member = current_user.becomes! Member
     end
     @member_form = MemberForm.new member
-    @member_form.submit params[:member]
     User.find(member.id).update type: 'Member'
-    if @member_form.save
+    if @member_form.save params[:member]
       redirect_to account_path
     else
       # FIXME fix this shiiiiit!!!!

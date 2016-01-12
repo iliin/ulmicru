@@ -17,8 +17,7 @@ class Web::Admin::QuestionariesController < Web::Admin::ApplicationController
 
   def create
     @questionary_form = QuestionaryForm.new_with_model
-    @questionary_form.submit params[:questionary]
-    if @questionary_form.save
+    if @questionary_form.submit params[:questionary]
       redirect_to admin_questionaries_path
     else
       render action: :new
@@ -27,8 +26,7 @@ class Web::Admin::QuestionariesController < Web::Admin::ApplicationController
 
   def update
     @questionary_form = QuestionaryForm.find_with_model params[:id]
-    @questionary_form.submit params[:questionary]
-    if @questionary_form.save
+    if @questionary_form.submit params[:questionary]
       if @questionary_form.model.member_confirmed?
         User.update params[:id], type: 'Member'
         #FIXME message in controller

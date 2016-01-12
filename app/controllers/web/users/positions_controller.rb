@@ -2,8 +2,7 @@ class Web::Users::PositionsController < Web::Users::ApplicationController
   def create
     @position = Position.new
     @position_form = PositionForm.new @position
-    @position_form.submit params[:position]
-    if @position_form.save
+    if @position_form.submit params[:position]
       redirect_to account_path
     else
       render action: :new
@@ -13,8 +12,7 @@ class Web::Users::PositionsController < Web::Users::ApplicationController
   def update
     @position = Position.find params[:id]
     @position_form = PositionForm.new @position
-    @position_form.submit params[:position]
-    if @position_form.save
+    if @position_form.submit params[:position]
       redirect_to account_path
     else
       render action: :edit

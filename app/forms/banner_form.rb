@@ -1,6 +1,7 @@
 class BannerForm < ApplicationForm
-  self.main_model = :banner
+  property :link, :begin_date, :end_date, :vertical, :horizontal
 
-  attributes :link, :begin_date, :end_date, required: true
-  attributes :vertical, :horizontal
+  validates :link, presence: true
+  validates :begin_date, presence: true
+  validates :end_date, presence: true
 end

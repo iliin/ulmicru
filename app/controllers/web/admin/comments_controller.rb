@@ -15,8 +15,7 @@ class Web::Admin::CommentsController < Web::Admin::ApplicationController
 
   def create
     @comment_form = CommentForm.new_with_model
-    @comment_form.submit(params[:comment])
-    if @comment_form.save
+    if @comment_form.submit params[:comment]
       redirect_to admin_comments_path
     else
       render action: :new
@@ -25,8 +24,7 @@ class Web::Admin::CommentsController < Web::Admin::ApplicationController
 
   def update
     @comment_form = CommentForm.find_with_model params[:id]
-    @comment_form.submit params[:comment]
-    if @comment_form.save
+    if @comment_form.submit params[:comment]
       redirect_to edit_admin_comment_path @comment_form.model
     else
       render action: :edit

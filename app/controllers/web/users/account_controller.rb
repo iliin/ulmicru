@@ -20,8 +20,7 @@ class Web::Users::AccountController < Web::Users::ApplicationController
     @user = model.find params[:id]
     @user_form = model_form.new @user
     old_email = @user.email
-    @user_form.submit params[model_name]
-    if @user_form.save
+    if @user_form.submit params[model_name]
       redirect_to account_path
     else
       redirect_to account_path
